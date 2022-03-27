@@ -1,0 +1,52 @@
+1171 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 6.2.3.Final
+1169 [main] INFO  c.e.l.LogbackDemoApplication - Starting LogbackDemoApplication using Java 11.0.12 on DESKTOP-2V575OB with PID 7216 (D:\work_project\demo\target\classes started by MinWoo in D:\work_project\demo)
+1173 [main] INFO  c.e.l.LogbackDemoApplication - No active profile set, falling back to 1 default profile: "default"
+3196 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+3207 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+3208 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+3209 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.60]
+3357 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+3357 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2077 ms
+3911 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+4191 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+4218 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+4219 [main] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Context refreshed
+4280 [main] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+4317 [main] INFO  s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+4470 [main] INFO  c.e.l.LogbackDemoApplication - Started LogbackDemoApplication in 4.206 seconds (JVM running for 4.804)
+18292 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+18292 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+18294 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+18327 [http-nio-8080-exec-1] INFO  c.e.l.controller.HelloController - Info Log
+18328 [http-nio-8080-exec-1] WARN  c.e.l.controller.HelloController - Warn Log
+18328 [http-nio-8080-exec-1] ERROR c.e.l.controller.HelloController - Error Log
+32448 [http-nio-8080-exec-2] INFO  c.e.l.controller.HelloController - Info Log
+32450 [http-nio-8080-exec-2] WARN  c.e.l.controller.HelloController - Warn Log
+32450 [http-nio-8080-exec-2] ERROR c.e.l.controller.HelloController - Error Log
+32603 [http-nio-8080-exec-3] INFO  c.e.l.controller.HelloController - Info Log
+32604 [http-nio-8080-exec-3] WARN  c.e.l.controller.HelloController - Warn Log
+32604 [http-nio-8080-exec-3] ERROR c.e.l.controller.HelloController - Error Log
+32782 [http-nio-8080-exec-4] INFO  c.e.l.controller.HelloController - Info Log
+32782 [http-nio-8080-exec-4] WARN  c.e.l.controller.HelloController - Warn Log
+32782 [http-nio-8080-exec-4] ERROR c.e.l.controller.HelloController - Error Log
+32961 [http-nio-8080-exec-5] INFO  c.e.l.controller.HelloController - Info Log
+32961 [http-nio-8080-exec-5] WARN  c.e.l.controller.HelloController - Warn Log
+32961 [http-nio-8080-exec-5] ERROR c.e.l.controller.HelloController - Error Log
+33155 [http-nio-8080-exec-6] INFO  c.e.l.controller.HelloController - Info Log
+33155 [http-nio-8080-exec-6] WARN  c.e.l.controller.HelloController - Warn Log
+33155 [http-nio-8080-exec-6] ERROR c.e.l.controller.HelloController - Error Log
+33350 [http-nio-8080-exec-7] INFO  c.e.l.controller.HelloController - Info Log
+33350 [http-nio-8080-exec-7] WARN  c.e.l.controller.HelloController - Warn Log
+33350 [http-nio-8080-exec-7] ERROR c.e.l.controller.HelloController - Error Log
+33552 [http-nio-8080-exec-8] INFO  c.e.l.controller.HelloController - Info Log
+33552 [http-nio-8080-exec-8] WARN  c.e.l.controller.HelloController - Warn Log
+33552 [http-nio-8080-exec-8] ERROR c.e.l.controller.HelloController - Error Log
+33757 [http-nio-8080-exec-9] INFO  c.e.l.controller.HelloController - Info Log
+33757 [http-nio-8080-exec-9] WARN  c.e.l.controller.HelloController - Warn Log
+33757 [http-nio-8080-exec-9] ERROR c.e.l.controller.HelloController - Error Log
+33966 [http-nio-8080-exec-10] INFO  c.e.l.controller.HelloController - Info Log
+33966 [http-nio-8080-exec-10] WARN  c.e.l.controller.HelloController - Warn Log
+33966 [http-nio-8080-exec-10] ERROR c.e.l.controller.HelloController - Error Log
+34160 [http-nio-8080-exec-1] INFO  c.e.l.controller.HelloController - Info Log
+34160 [http-nio-8080-exec-1] WARN  c.e.l.controller.HelloController - Warn Log
+34160 [http-nio-8080-exec-1] ERROR c.e.l.controller.HelloController - Error Log
