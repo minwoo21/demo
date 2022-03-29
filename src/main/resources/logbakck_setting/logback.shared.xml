@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<included scan="true" scanPeriod="2 seconds">
+
+	<!-- 공통 환경변수 설정 -->
+	<property name="LOG_PATTERN_LOCAL" value="%date{HH:mm:ss.SSS} [${springAppName:-},${serverProfile:-},%X{traceId:-},%X{spanId:-}] %X{req.remoteHost:-} %-5level: %c{50}.%method\\(\\) (%file:%line\\) - %msg%n" />
+	<property name="LOG_PATTERN" value="%date{yyyy-MM-dd HH:mm:ss.SSS} [%X{traceId:-},%X{spanId:-}] %X{req.remoteHost:-} %-5level: %c{50}.%method\\(\\) (%file:%line\\) - %msg%n" />
+	<property name="LOG_CHARSET" value="UTF-8" />
+
+	<!-- HOSTNAME early binding -->
+	<property name="__HOSTNAME" value="${HOSTNAME}" />
+	<springProperty name="LOG_FILE" source="logging.file" />
+	<!-- 롤링파일 최대 몇일치 보관할지 -->
+	<property name="LOG_FILE_MAX_HISTORY" value="365" />
+
+	<!-- Appenders 설정 -->
+	<!-- CONSOLE_LOCAL: 콘솔로 출력 -->
+	<appender name="CONSOLE_LOCAL" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>${LOG_PATTERN_LOCAL}</pattern>
+			<charset>${LOG_CHARSET}</charset>
+		</encoder>
+	</appender>
+
+	<!-- CONSOLE: 콘솔로 출력 -->
+	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>${LOG_PATTERN}</pattern>
+			<charset>${LOG_CHARSET}</charset>
+		</encoder>
+	</appender>
+
+	<appender name="NOP" class="ch.qos.logback.core.helpers.NOPAppender">
+	</appender>
+
+	<appender name="TIME_ROLLING_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${LOG_FILE}</file>
+		<encoder>
+			<pattern>${LOG_PATTERN}</pattern>
+			<charset>${LOG_CHARSET}</charset>
+		</encoder>
+		<append>true</append>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${LOG_FILE}.%d{yyyyMMdd}.zip</fileNamePattern>
+			<maxHistory>${LOG_FILE_MAX_HISTORY:-0}</maxHistory>
+			<cleanHistoryOnStart>false</cleanHistoryOnStart>
+		</rollingPolicy>
+	</appender>
+	
+	<!-- elastic logging을 이용한 콘솔 로깅 -->
+	<appender name="ECS_CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder class="co.elastic.logging.logback.EcsEncoder">
+			<includeOrigin>true</includeOrigin>
+		</encoder>			
+	</appender>
+
+	<!-- elastic logging의 기본 logging 정책을 사용하는 경우는 ECS_JSON_FILE appender를 이용 -->
+	<appender name="ECS_JSON_ROLLING_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${LOG_FILE}.json</file>
+		<encoder class="co.elastic.logging.logback.EcsEncoder">
+			<includeOrigin>true</includeOrigin>
+		</encoder>			
+		<append>true</append>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${LOG_FILE}.json.%d{yyyyMMdd}.zip</fileNamePattern>
+			<maxHistory>1</maxHistory>
+			<cleanHistoryOnStart>false</cleanHistoryOnStart>
+		</rollingPolicy>
+	</appender>
+</included>
