@@ -27,6 +27,10 @@
     </encoder>
   </appender>
 
+
+  <logger name="com.example.logbackDemo.controller" level="TRACE"/>
+
+<!--  logger를 제외한 항목 root-->
   <root level="INFO">
     <appender-ref ref="console" />
     <appender-ref ref="INFO_LOG" />
