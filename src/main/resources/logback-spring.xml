@@ -28,7 +28,7 @@
   </appender>
 
 
-  <logger name="com.example.logbackDemo.controller" level="TRACE"/>
+  <logger name="com.example.logbackDemo.controller.HelloController" level="TRACE"/>
 
 <!--  logger를 제외한 항목 root-->
   <root level="INFO">
