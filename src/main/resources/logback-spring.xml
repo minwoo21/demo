@@ -8,6 +8,15 @@
       <level>DEBUG</level>
     </filter>
     <encoder>
+      <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%-5level] [%thread] %logger %msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <appender name="console2" class="ch.qos.logback.core.ConsoleAppender">
+    <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+      <level>INFO</level>
+    </filter>
+    <encoder>
       <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] %highlight([%-5level]) %cyan([%thread]) %boldGreen(%logger{30}) %msg%n</pattern>
     </encoder>
   </appender>
@@ -27,10 +36,13 @@
     </encoder>
   </appender>
 
+  <springProfile name="local">
+    <logger name="com.example.logbackDemo.controller.HelloController" level="DEBUG" additivity="false">
+      <appender-ref ref="console2" />
+    </logger>
+  </springProfile>
 
-  <logger name="com.example.logbackDemo.controller.HelloController" level="TRACE"/>
 
-<!--  logger를 제외한 항목 root-->
   <root level="INFO">
     <appender-ref ref="console" />
     <appender-ref ref="INFO_LOG" />
