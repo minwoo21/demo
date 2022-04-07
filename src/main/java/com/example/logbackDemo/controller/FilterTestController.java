@@ -6,11 +6,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class HelloController {
+public class FilterTestController {
 
-    private final Logger LOGGER = LoggerFactory.getLogger(HelloController.class);
+    private final Logger LOGGER = LoggerFactory.getLogger(FilterTestController.class);
 
-    @PostMapping("log-test")
+    @PostMapping("filter-test")
     public void logTest() {
         LOGGER.trace("Trace Log");
         LOGGER.debug("Debug Log test");

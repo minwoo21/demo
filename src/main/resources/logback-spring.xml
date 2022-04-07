@@ -1,50 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configuration scan="true" scanPeriod="30 seconds">
-  <property name="logdir" value="D:\work_project\demo\logs"/>
+<configuration scan="false">
 
-  <!-- Appenders -->
-  <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
-    <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-      <level>DEBUG</level>
-    </filter>
-    <encoder>
-      <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%-5level] [%thread] %logger %msg%n</pattern>
-    </encoder>
-  </appender>
+    <timestamp key="datetime" datePattern="yyyyMMdd"/>
 
-  <appender name="console2" class="ch.qos.logback.core.ConsoleAppender">
-    <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-      <level>INFO</level>
-    </filter>
-    <encoder>
-      <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] %highlight([%-5level]) %cyan([%thread]) %boldGreen(%logger{30}) %msg%n</pattern>
-    </encoder>
-  </appender>
+    <!-- Appenders -->
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%-5level] [%thread] %logger %msg%n</pattern>
+        </encoder>
+    </appender>
 
-  <appender name="INFO_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
-    <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-      <level>INFO</level>
-    </filter>
-    <file>./logs/info_output.log</file>
-    <append>true</append>
-    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-      <fileNamePattern>./logs/info_output.%d{yyyy-MM-dd}.gz</fileNamePattern>
-      <maxHistory>30</maxHistory>
-    </rollingPolicy>
-    <encoder>
-      <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%-5level] [%thread] %logger{30} %msg%n</pattern>
-    </encoder>
-  </appender>
-
-  <springProfile name="local">
-    <logger name="com.example.logbackDemo.controller.HelloController" level="DEBUG" additivity="false">
-      <appender-ref ref="console2" />
-    </logger>
-  </springProfile>
+    <appender name="console2" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>
+                [%d{yyyy-MM-dd HH:mm:ss.SSS}] %highlight([%-5level]) %cyan([%thread]) %boldGreen(%logger{30}) %msg%n
+            </pattern>
+        </encoder>
+    </appender>
 
 
-  <root level="INFO">
-    <appender-ref ref="console" />
-    <appender-ref ref="INFO_LOG" />
-  </root>
+    <appender name="INFO_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+        <file>./logs/info_output_${datetime}.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>./logs/info_output.%d{yyyy-MM-dd}.gz</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%-5level] [%thread] %logger{30} %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="filter-test" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="com.example.logbackDemo.logbackFilter.LogbackFilter"/>
+        <file>./logs/logbackFilter_${datetime}.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>./logs/logbackFilter.%d{yyyy-MM}.gz</fileNamePattern>
+            <maxHistory>1</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%-5level] [%thread] %logger{30} %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <springProfile name="local">
+        <logger name="com.example.logbackDemo.controller.HelloController" level="DEBUG" additivity="false">
+            <appender-ref ref="console2"/>
+        </logger>
+        <logger name="com.example.logbackDemo.controller.FilterTestController" level="DEBUG" additivity="false">
+            <appender-ref ref="filter-test"/>
+        </logger>
+    </springProfile>
+
+
+    <root level="INFO">
+        <appender-ref ref="console"/>
+        <appender-ref ref="INFO_LOG"/>
+    </root>
 </configuration>
